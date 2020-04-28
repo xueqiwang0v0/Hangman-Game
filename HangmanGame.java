@@ -2,6 +2,9 @@ package HangmanGame;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Map.Entry;
+import java.util.Iterator;
+import java.util.Map;
 
 public class HangmanGame {
 	
@@ -16,8 +19,7 @@ public class HangmanGame {
 	HangmanGame(){
 		Random r = new Random();
 		// randomly select the mode of hangman game
-		//this.mode = r.nextBoolean();
-		this.mode = true;
+		this.mode = r.nextBoolean();
 	}
 	
 	/**
@@ -44,12 +46,7 @@ public class HangmanGame {
 				newGame.evilHangmanGame(scan, path);
 			
 			// ask the user whether to play again
-			System.out.println("Do you want to play again? y/n");
-			String ans = scan.next();
-			if(ans.startsWith("y") || ans.startsWith("Y"))
-				again = true;
-			else if(ans.startsWith("n") || ans.startsWith("N"))
-				again = false;
+			again = newGame.playAgain(scan);
 		}
 		
 		scan.close();
@@ -99,9 +96,66 @@ public class HangmanGame {
 	 * @parat path of txt file
 	 */
 	void evilHangmanGame(Scanner scan, String path) {
+		EvilHangman newEvil = new EvilHangman(path);
 		
+		String ch;     // user's input
+		boolean valid; // whether the user's input is correct
+		boolean over = false;
+		while(over == false)
+		{
+			// get the user's guess
+			ch = newEvil.getUserGuess(scan);
+			
+			// get the new words family
+			
+			newEvil.getWordsFamily(ch);
+			
+			
+			System.out.println(newEvil.wordsFamily);
+			
+			// check the guess
+			valid = newEvil.isCorrect(ch);
+			
+			// print incorrect guesses if the current guess is incorrect
+			if(valid == false)
+				newEvil.incorrectGuesses(ch);
+			
+			// show current known word
+			newEvil.printKnownWord();
+			
+			// check whether the game is over
+			over = newEvil.isGameOver();
+		}
+		
+		
+		// show the results
+		newEvil.showFinalResults();
 	}
 	
+	/**
+	 * This method returns true if the user wants to play again.
+	 * @param scan
+	 * @return again (true/false)
+	 */
+	boolean playAgain(Scanner scan) {
+		
+		boolean valid = false;
+		boolean again = false;
+		
+		while(valid == false) {
+			System.out.println("Do you want to play again? y/n");
+			String ans = scan.next();
+			if(ans.startsWith("y") || ans.startsWith("Y")) {
+				valid = true;
+				again = true;
+			}
+			else if(ans.startsWith("n") || ans.startsWith("N")) {
+				valid = true;
+				again = false;
+			}
+		}
+		return again;
+	}
 	
 	
 }
