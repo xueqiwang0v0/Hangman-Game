@@ -86,13 +86,11 @@ public class EvilHangman extends Hangman {
 			if(!this.shownFamily.containsKey(key)) {
 				value.add(word);
 				this.shownFamily.put(key, value);
-				//System.out.println(0);
 			}
 			else {
 				value = this.shownFamily.get(key);
 				value.add(word);
 				this.shownFamily.replace(key, value);
-				//System.out.println(1);
 			}
 
 		}
@@ -119,7 +117,7 @@ public class EvilHangman extends Hangman {
 	 * @param map
 	 * @return key of the largest word family
 	 */
-	private String getLargestWordsFamily(Map<String, List<String>> map) {
+	 String getLargestWordsFamily(Map<String, List<String>> map) {
 		int max = 0;
 		int freq; // the volume of the words family
 		String key = null;
@@ -137,7 +135,7 @@ public class EvilHangman extends Hangman {
 	
 	/**
 	 * This method returns true when a character is a correct guess.
-	 * This method also updates the correct array, known word and mistakes.
+	 * This method also updates the correct array and mistakes.
 	 * @param ch
 	 * @return correct (true/false)
 	 */
