@@ -130,7 +130,7 @@ public abstract class Hangman {
 	 * @param the word to be checked
 	 * @return clean (true/false)
 	 */
-	private boolean isClean(String word) {
+	boolean isClean(String word) {
 		boolean clean = true;
 		// check upper case letters: Zambia
 		if(Character.isUpperCase(word.charAt(0)) == true)
@@ -155,7 +155,7 @@ public abstract class Hangman {
 	
 	/**
 	 * This methods returns the type of current game.
-	 * @return the type of hangman game
+	 * @return the type of hangman game (String)
 	 */
 	abstract String getGameType();
 	
@@ -168,7 +168,7 @@ public abstract class Hangman {
 	
 	/**
 	 * This method returns the length of the word.
-	 * @return length
+	 * @return length (int)
 	 */
 	int getWordLength() {
 		int length = this.word.length();
