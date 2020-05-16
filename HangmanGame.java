@@ -2,10 +2,12 @@ package HangmanGame;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Map.Entry;
-import java.util.Iterator;
-import java.util.Map;
 
+/**
+ * The main program of the hangman game.
+ * This part randomly select traditional hangman or evil hangman.
+ * @author Xueqi Wang, Weijie Qi
+ */
 public class HangmanGame {
 	
 	/**
@@ -36,7 +38,7 @@ public class HangmanGame {
 			// initialize a new hangman game
 			HangmanGame newGame = new HangmanGame();
 			
-			String path = "/Users/xueqiwang/OneDrive - PennO365/UPenn/2nd semester/CIT590/Homework/HW9/words.txt";
+			String path = "words.txt";
 			
 			// traditional hangman mode
 			if(newGame.mode == true)
@@ -107,11 +109,7 @@ public class HangmanGame {
 			ch = newEvil.getUserGuess(scan);
 			
 			// get the new words family
-			
 			newEvil.getWordsFamily(ch);
-			
-			
-			System.out.println(newEvil.wordsFamily);
 			
 			// check the guess
 			valid = newEvil.isCorrect(ch);
